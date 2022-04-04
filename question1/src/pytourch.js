@@ -1,10 +1,10 @@
 import React from "react";
 import "./pytourch.css";
+import allPossiblities from "./data";
 
 class pytourch extends React.Component {
   constructor(props) {
     super(props);
-    this.allpossiblities = {};
     this.state = {
       selection: {
         build: "Stable (1.11.0)",
@@ -23,13 +23,28 @@ class pytourch extends React.Component {
     const value = event.target.value;
     let statusCopy = Object.assign({}, this.state);
     statusCopy.selection[keydata] = value;
+    if (statusCopy.selection.Package === "LibTorch") {
+      statusCopy.selection.Language = "C++/Java";
+    }
+
+    Object.entries(allPossiblities).map(([number, objects]) => {
+      if (
+        statusCopy.selection.build === objects.build &&
+        statusCopy.selection.OS === objects.OS &&
+        statusCopy.selection.Package === objects.Package &&
+        statusCopy.selection.Language === objects.Language &&
+        statusCopy.selection.Compute === objects.Compute
+      ) {
+        statusCopy.selection["Message"] = objects.Message;
+      }
+    });
+
     this.setState(statusCopy);
   };
 
   render() {
     return (
       <div className="centrecontent">
-        {console.log(this.state.selection)}
         <div className="container">
           <div className="parentbox">
             <div className="childbox_one">
@@ -327,8 +342,13 @@ class pytourch extends React.Component {
                 className="radiobox selectedbox"
                 style={
                   this.state.selection.Compute === "ROCm 4.2 (beta)"
-                    ? { width: "19%", background: "#EE4C2C", color: "white" }
-                    : { width: "19%" }
+                    ? {
+                        width: "19%",
+                        background: "#EE4C2C",
+                        color: "white",
+                        textDecorationLine: "line-through",
+                      }
+                    : { width: "19%", textDecorationLine: "line-through" }
                 }
               >
                 <input
@@ -367,11 +387,12 @@ class pytourch extends React.Component {
               <h4>Run this Command:</h4>
             </div>
             <div className="childbox_two">
+              {console.log(this.state.selection.Message)}
               <textarea
-                readonly="true"
+                readOnly={true}
                 className="radiobox"
                 value={this.state.selection.Message}
-                style={{ width: "82%", padding: "10mm" }}
+                style={{ width: "82%", padding: "10mm", fontSize: "3.5mm" }}
               />
             </div>
           </div>
