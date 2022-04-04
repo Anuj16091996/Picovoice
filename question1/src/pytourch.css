@@ -1,0 +1,114 @@
+
+*{
+margin: 0%;
+vertical-align: middle;
+}
+.centrecontent{
+    min-height: 100vh; /* minimum height = screen height */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #F3F4F7;
+}
+
+.container{
+     width: 60%;
+}
+
+h4{
+    border-left: 1px solid rgb(131, 131, 131);
+    padding-left: 2mm;
+   
+ 
+}
+
+.checkmark {
+    position: absolute;
+    top: 8;
+    left: 0;
+    height: 25px;
+    width: 25px;
+    background-color: #c0c0c0;
+    border-radius: 50%;
+  }
+
+  .checkmark:after {
+    content: "";
+    position: absolute;
+    display: none;
+  }
+  .radiobox input:checked ~ .checkmark:after {
+    display: block;
+  }
+  .radiobox .checkmark:after {
+    top: 9px;
+   left: 9px;
+   width: 8px;
+   height: 8px;
+   border-radius: 50%;
+   background: white;
+}
+  
+input {
+    position: absolute;
+    opacity: 0;
+    cursor: pointer;
+  }
+
+  input:checked ~ .checkmark {
+    background-color: #2196F3;
+  }
+  .radiobox {
+    display: block;
+    position: relative;
+    padding: 10px 35px 10px 35px;
+    cursor: pointer;
+    font-size: 15px;
+    
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    display: inline-block;
+    border: 2px solid #f3f4f7;
+  }
+  
+  .radiobox input:checked ~ .checkmark {
+    background-color: #a5a5a5;
+  }
+  
+
+
+.lineelements{
+
+    color:rgb(70, 70, 70);
+    font-size: 15px;
+  
+ }
+
+ .selectedbox{
+     background-color: #ffffff;
+    font-size: 13px;
+}
+
+
+.selectedbox:hover{
+    background-color: #EE4C2C;
+}
+
+
+.parentbox{
+    width: 100% ;
+    
+}
+
+.childbox_one{
+align-content: center;
+width: 20%;
+display: inline-block ;
+
+}
+.childbox_two{
+    width: 70%;
+     display: inline-block;
+}
