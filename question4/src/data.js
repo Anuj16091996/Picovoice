@@ -18,7 +18,7 @@ const allCommand = {
     moreInformation: "For more information, ",
     Link: {
       Link: "https://cloud.google.com/dotnet/docs/setup",
-      content: "Setting Up a C# Development Environment.",
+      content: "Setting Up a Go Development Environment.",
     },
     Condition: null,
     Commad: "go get cloud.google.com/go/speech/apiv1",
@@ -30,7 +30,7 @@ const allCommand = {
     moreInformation: "For more information, ",
     Link: {
       Link: "https://cloud.google.com/dotnet/docs/setup",
-      content: "Setting Up a C# Development Environment.",
+      content: "Setting Up a Node.js Development Environment.",
     },
     Condition: null,
     Commad: "npm install --save @google-cloud/speech",

@@ -1,7 +1,10 @@
 *{
-    margin: 3%;
+    margin: 2%;
     vertical-align: middle;
+    font-size: 14px;
 }
+
+
 
 .centrecontent{
         min-height: 50vh; 
@@ -15,6 +18,9 @@ button{
     background: white;
     border: none;
 }
+a{
+    display: contents;
+}
 
 button:hover{
     border-bottom: 1px solid #010103;
@@ -27,8 +33,16 @@ button:hover{
 }
 
    .container{
-         width: 60%;
+         width: 80%;
          border: 1px solid #dadce0;
          border-radius: 25px;
     }
+
+.commandCopy{
+    background-color: #F1F3F4;
+    padding: 20px 0px 20px 63px;
+    margin: -10px 0px -10px -23px;
+    width: 26cm;
+}
+
     
