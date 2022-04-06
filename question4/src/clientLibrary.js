@@ -1,6 +1,9 @@
 import React from "react";
 import "./clientLib.css";
 import data from "./data";
+import darkModeIcon from "./darkmode-removebg-preview.png";
+import lightModeIcon from "./lightmode-removebg-preview.png";
+import codeCopy from "./codeCopy-removebg-preview.png";
 
 class clientLibrary extends React.Component {
   constructor() {
@@ -19,11 +22,25 @@ class clientLibrary extends React.Component {
         Condition_second:
           "If you are using .NET Core command-line interface tools to install your dependencies, run the following command:",
         Commad_seocnd: "dotnet add package Google.Apis",
+        darkmode: false,
       },
     };
   }
 
-  changeState = (object) => {};
+  changeDarkmode = () => {
+    let statusCopy = Object.assign({}, this.state);
+
+    if (statusCopy.clinetSelection.darkmode) {
+      statusCopy.clinetSelection.darkmode = false;
+    } else {
+      statusCopy.clinetSelection.darkmode = true;
+    }
+    this.setState(statusCopy);
+  };
+
+  changeState = (object) => {
+    // console.log(object);
+  };
 
   render() {
     let allLanguages = Object.entries(data).map(([index, objects]) => {
@@ -41,12 +58,12 @@ class clientLibrary extends React.Component {
         <div className="centrecontent">
           <div className="container">
             <div className="border_down">
+              {console.log(this.state.clinetSelection.darkmode)}
               <table>
                 <tr>{allLanguages}</tr>
               </table>
             </div>
             <table>
-              {console.log(this.state.clinetSelection)}
               <tr>
                 {this.state.clinetSelection.moreInformation}
                 <a href={this.state.clinetSelection.Link.Link}>
@@ -60,8 +77,35 @@ class clientLibrary extends React.Component {
                   : null}
               </tr>
               <br></br>
-              <div className="commandCopy">
-                <tr>{this.state.clinetSelection.Commad}</tr>
+              <div
+                style={
+                  this.state.clinetSelection.darkmode
+                    ? { backgroundColor: "#283142", color: "white" }
+                    : { backgroundColor: "#F1F3F4" }
+                }
+                className="commandlenght"
+              >
+                <div className="commandCopy">
+                  <tr>{this.state.clinetSelection.Commad}</tr>
+                </div>
+                <div className="Modes">
+                  <div
+                    className="inline_div"
+                    onClick={() => this.changeDarkmode()}
+                  >
+                    <img
+                      src={
+                        this.state.clinetSelection.darkmode
+                          ? lightModeIcon
+                          : darkModeIcon
+                      }
+                      alt="darkModeButton"
+                    />
+                  </div>
+                  <div className="inline_div">
+                    <img src={codeCopy} alt="codeCopy" />
+                  </div>
+                </div>
               </div>
               <br></br>
               <tr>
@@ -71,18 +115,44 @@ class clientLibrary extends React.Component {
               </tr>
               <br></br>
               <div
+                style={
+                  this.state.clinetSelection.darkmode
+                    ? { backgroundColor: "#283142", color: "white" }
+                    : { backgroundColor: "#F1F3F4" }
+                }
                 className={
-                  this.state.clinetSelection.Commad_seocnd != null
-                    ? "commandCopy"
-                    : ""
+                  this.state.clinetSelection.Condition_second != null
+                    ? "commandlenght"
+                    : "block"
                 }
               >
-                <tr>
-                  {this.state.clinetSelection.Commad_seocnd != null
-                    ? this.state.clinetSelection.Commad_seocnd
-                    : null}
-                </tr>
+                <div className="commandCopy">
+                  <tr>
+                    {this.state.clinetSelection.Commad_seocnd != null
+                      ? this.state.clinetSelection.Commad_seocnd
+                      : null}
+                  </tr>
+                </div>
+                <div className="Modes">
+                  <div
+                    className="inline_div"
+                    onClick={() => this.changeDarkmode()}
+                  >
+                    <img
+                      src={
+                        this.state.clinetSelection.darkmode
+                          ? lightModeIcon
+                          : darkModeIcon
+                      }
+                      alt="darkModeButton"
+                    />
+                  </div>
+                  <div className="inline_div">
+                    <img src={codeCopy} alt="codeCopy" />
+                  </div>
+                </div>
               </div>
+              <br></br>
             </table>
           </div>
         </div>
