@@ -4,6 +4,8 @@ import data from "./data";
 import darkModeIcon from "./darkmode-removebg-preview.png";
 import lightModeIcon from "./lightmode-removebg-preview.png";
 import codeCopy from "./codeCopy-removebg-preview.png";
+import lightCodeCopy from "./LightcodeCopy-removebg-preview.png";
+import downarrow from "./down.png";
 
 class clientLibrary extends React.Component {
   constructor() {
@@ -26,10 +28,21 @@ class clientLibrary extends React.Component {
       },
     };
   }
-
+  setClipboard(command) {
+    navigator.clipboard.writeText(command).then(
+      function () {
+        setTimeout(function () {
+          document.getElementById("clipboard").style.display = "none";
+        }, 2000);
+        document.getElementById("clipboard").style.display = "block";
+      },
+      function () {
+        throw Error;
+      }
+    );
+  }
   changeDarkmode = () => {
     let statusCopy = Object.assign({}, this.state);
-
     if (statusCopy.clinetSelection.darkmode) {
       statusCopy.clinetSelection.darkmode = false;
     } else {
@@ -39,49 +52,91 @@ class clientLibrary extends React.Component {
   };
 
   changeState = (object) => {
-    // console.log(object);
+    let statusCopy = Object.assign({}, this.state);
+    statusCopy.clinetSelection.Language = object.Language;
+    statusCopy.clinetSelection.Link = object.Link;
+    statusCopy.clinetSelection.Condition = object.Condition;
+    statusCopy.clinetSelection.Commad = object.Commad;
+    statusCopy.clinetSelection.Condition_second = object.Condition_second;
+    statusCopy.clinetSelection.Commad_seocnd = object.Commad_seocnd;
+    this.setState(statusCopy);
   };
 
   render() {
+    let morelanguageOptions = Object.entries(data).map(([index, objects]) => {
+      if (index > 7) {
+        return <p>{objects.Language}</p>;
+      }
+    });
     let allLanguages = Object.entries(data).map(([index, objects]) => {
-      return (
-        <td>
-          <button onClick={() => this.changeState(objects)}>
-            {objects.Language}
-          </button>
-        </td>
-      );
+      if (index < 7) {
+        return (
+          <td>
+            <button onClick={() => this.changeState(objects)}>
+              {objects.Language}
+            </button>
+          </td>
+        );
+      }
     });
 
     return (
       <div>
+        <div className="clipboard" id="clipboard">
+          {" "}
+          Code Copied to clipboard
+        </div>
         <div className="centrecontent">
           <div className="container">
             <div className="border_down">
-              {console.log(this.state.clinetSelection.darkmode)}
-              <table>
-                <tr>{allLanguages}</tr>
-              </table>
+              <div className="dropdown">
+                <table>
+                  <tr>
+                    {allLanguages}
+                    <div className="moreArrow">
+                      <td>
+                        <button>More</button>
+                        <img
+                          className="downarraowcss"
+                          src={downarrow}
+                          alt="downarraow"
+                        />
+                      </td>
+                      <tr>
+                        <div class="dropdown-content">
+                          {morelanguageOptions}
+                        </div>
+                      </tr>
+                    </div>
+                  </tr>
+                </table>
+              </div>
             </div>
-            <table>
-              <tr>
-                {this.state.clinetSelection.moreInformation}
-                <a href={this.state.clinetSelection.Link.Link}>
-                  {this.state.clinetSelection.Link.content}
-                </a>
-              </tr>
+            <table className="tablebackgroundcolour">
+              <div className="trcontent">
+                <tr>
+                  {this.state.clinetSelection.moreInformation}
+                  <a href={this.state.clinetSelection.Link.Link}>
+                    {this.state.clinetSelection.Link.content}
+                  </a>
+                </tr>
+              </div>
+
               <br></br>
-              <tr>
-                {this.state.clinetSelection.Condition != null
-                  ? this.state.clinetSelection.Condition
-                  : null}
-              </tr>
+              <div className="trcontent">
+                <tr>
+                  {this.state.clinetSelection.Condition != null
+                    ? this.state.clinetSelection.Condition
+                    : null}
+                </tr>
+              </div>
+
               <br></br>
               <div
                 style={
                   this.state.clinetSelection.darkmode
                     ? { backgroundColor: "#283142", color: "white" }
-                    : { backgroundColor: "#F1F3F4" }
+                    : { backgroundColor: "#F1F3F4", display: "block" }
                 }
                 className="commandlenght"
               >
@@ -90,9 +145,14 @@ class clientLibrary extends React.Component {
                 </div>
                 <div className="Modes">
                   <div
-                    className="inline_div"
+                    className="inline_div img-hover"
                     onClick={() => this.changeDarkmode()}
                   >
+                    <div className="img-hover__text">
+                      {this.state.clinetSelection.darkmode
+                        ? "Light Mode Theme"
+                        : "Dark mode theme"}
+                    </div>
                     <img
                       src={
                         this.state.clinetSelection.darkmode
@@ -102,17 +162,35 @@ class clientLibrary extends React.Component {
                       alt="darkModeButton"
                     />
                   </div>
-                  <div className="inline_div">
-                    <img src={codeCopy} alt="codeCopy" />
+                  <div
+                    className="inline_div img-hover"
+                    onClick={() =>
+                      this.setClipboard(this.state.clinetSelection.Commad)
+                    }
+                  >
+                    <div className="img-hover__text">Copy Code</div>
+                    <img
+                      src={
+                        this.state.clinetSelection.darkmode
+                          ? lightCodeCopy
+                          : codeCopy
+                      }
+                      alt="codeCopy"
+                      title="data"
+                    />
                   </div>
+
+                  {/* <div className="dropdown_Modes_Hover"> Hello world</div> */}
                 </div>
               </div>
               <br></br>
-              <tr>
-                {this.state.clinetSelection.Condition_second != null
-                  ? this.state.clinetSelection.Condition_second
-                  : null}
-              </tr>
+              <div className="trcontent">
+                <tr>
+                  {this.state.clinetSelection.Condition_second != null
+                    ? this.state.clinetSelection.Condition_second
+                    : null}
+                </tr>
+              </div>
               <br></br>
               <div
                 style={
@@ -135,9 +213,14 @@ class clientLibrary extends React.Component {
                 </div>
                 <div className="Modes">
                   <div
-                    className="inline_div"
+                    className="inline_div img-hover"
                     onClick={() => this.changeDarkmode()}
                   >
+                    <div className="img-hover__text">
+                      {this.state.clinetSelection.darkmode
+                        ? "Light Mode Theme"
+                        : "Dark mode theme"}
+                    </div>
                     <img
                       src={
                         this.state.clinetSelection.darkmode
@@ -147,12 +230,26 @@ class clientLibrary extends React.Component {
                       alt="darkModeButton"
                     />
                   </div>
-                  <div className="inline_div">
-                    <img src={codeCopy} alt="codeCopy" />
+                  <div
+                    className="inline_div img-hover"
+                    onClick={() =>
+                      this.setClipboard(
+                        this.state.clinetSelection.Commad_seocnd
+                      )
+                    }
+                  >
+                    <div className="img-hover__text">Copy Code</div>
+                    <img
+                      src={
+                        this.state.clinetSelection.darkmode
+                          ? lightCodeCopy
+                          : codeCopy
+                      }
+                      alt="codeCopy"
+                    />
                   </div>
                 </div>
               </div>
-              <br></br>
             </table>
           </div>
         </div>

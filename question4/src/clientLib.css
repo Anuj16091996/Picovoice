@@ -1,5 +1,5 @@
 *{
-    margin: 2%;
+ 
     vertical-align: middle;
     font-size: 14px;
 }
@@ -7,7 +7,7 @@
 
 
 .centrecontent{
-        min-height: 50vh; 
+        min-height: 100vh; 
         display: flex;
         justify-content: center;
         align-items: center;
@@ -30,8 +30,12 @@ button:hover{
 .border_down{
     border-bottom: 1px solid #dadce0;
     margin: 0%;
+    padding: 8px 4px 7px 23px;
 }
 
+.trcontent{
+padding: 6px 8px 0px 3px;
+}
    .container{
          width: 20cm;
          border: 1px solid #dadce0;
@@ -40,20 +44,17 @@ button:hover{
 
 .commandCopy{
     display: inline-block;
-    padding: 20px 0px 20px 52px;
-    margin: -10px 0px -10px -60px;
+    padding: 0px 4px 2px 15px;
     width: 77%;
     
 }
 .commandlenght{
     width: 19cm;
-    margin: -10px 0px -10px -18px;
-    padding: 5px 0px 5px 41px;
+    padding: 14px 15px 14px 23px
 }
 
 .Modes{
     display: inline-block;
-    margin-top: -8px;
     width: 20%;
 }
 
@@ -62,13 +63,127 @@ button:hover{
  
 }
 
+.hover_message{
+    width: 99%;
+    margin: -58px 0px -9px 0px;
+   
+}
+
+
+
+.hover_content:hover{
+    background-color: aqua;
+}
+
+.hover_content{
+  
+    padding: 3px;
+    font-size: 10px;
+    z-index: 1;
+    position: relative;
+    color: white;
+    background-color: #0000008c;
+    display: inline-flex 
+}
+
+
 img{
         width: 22px;
-        margin-left: 55px;
+       /* margin-left: 71px; */
+       /* margin-top: -33px; */
+     
 }
+
+
 
 .inline_div{
     display:  inline-block;
     width: 20%;
+   margin-left: 2px;
+}
+/*  */
+.Modes{
+    justify-content: end;
+    text-align: end;
+    margin-top: 0;
+}
+.img-hover{
+    position: relative;
+    cursor: pointer;
+
+}
+.img-hover .img-hover__text{
+    visibility: collapse;
+    position: absolute;
+    background: #0000009e;
+    border-radius: 2px;
+    color: white;
+    padding: 2px 5px;
+    font-size: 10px;
+    top: 0;
+    white-space: nowrap;
+    left: 0;
+    transform: translate(-25%, -125%);
+}
+.img-hover:hover .img-hover__text{
+    visibility: visible;
 }
 
+.clipboard{
+    background-color: #010103;
+    color: white;
+    width: 12%;
+    padding: 10px;
+    position: absolute;
+    bottom: -10px;
+    align-items: center;
+    text-align: center;
+   display: none;
+    animation: animation 2s 1;
+    
+}
+tr {
+   white-space: pre-wrap;
+}
+
+@keyframes animation {
+0% {bottom: -20px;}
+50%  {bottom: 20px;}
+75% {bottom: 20px;}
+100% {bottom: 0px;}
+125% {bottom: -20px;}
+}
+
+.moreArraow:hover .dropdown-content:hover{
+    display: block;
+}
+.dropdown-content {
+   display: none;
+    position: absolute;
+    background-color: #f1f1f1;
+    min-width: 132px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+    text-align: center;
+    left: 22cm;
+  }
+  
+  .dropdown-content p {
+    color: black;
+    padding: 6px 16px;
+    text-decoration: none;
+    display: block;
+  }
+
+  .moreArrow:hover .dropdown-content{
+    display: block;
+  }
+
+  .downarraowcss{
+    width: 10px;
+    margin: 2px 0px 0px -22px;
+  }
+
+.tablebackgroundcolour{
+ display: block;
+}
