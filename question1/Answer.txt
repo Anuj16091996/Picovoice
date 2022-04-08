@@ -1,1 +1,1 @@
-In the pyTorch 
+In the pyTorch version, its unclear to user, what of selection one option, thats why i add a custom radio button with it.
